@@ -4,53 +4,196 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Snap - Page de connection a momo djebbouri</title>
+<meta name="theme-color" content="#100d0f">
+<title>NOIR — Démonstration 18+</title>
 <style>
-* { box-sizing: border-box; }
+:root {
+  --bg:#100d0f; --panel:#1b1619; --red:#e52b43;
+  --text:#f7f3f4; --muted:#aaa0a4;
+}
+* { box-sizing:border-box; }
 body {
-  margin: 0; font-family: Arial, sans-serif;
-  background: #fffc00; color: #111;
-  min-height: 100vh; display: grid; place-items: center;
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:Arial,sans-serif;
 }
-.card {
-  background: white; padding: 30px 24px;
-  border-radius: 22px; width: 90%; max-width: 360px;
-  text-align: center; box-shadow: 0 8px 25px #0002;
+header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 6%; border-bottom:1px solid #34282d;
+  position:sticky; top:0; background:#100d0ff2; z-index:2;
 }
-.ghost { font-size: 58px; }
-h1 { font-size: 25px; margin: 10px 0; }
-p { color: #555; font-size: 14px; line-height: 1.5; }
-input, button {
-  width: 100%; padding: 14px; margin-top: 14px;
-  border-radius: 10px; font-size: 16px;
-}
-input { border: 1px solid #ddd; }
+.logo { font-size:25px; font-weight:900; letter-spacing:4px; }
+.logo span { color:var(--red); }
+.tag { color:var(--muted); font-size:11px; letter-spacing:2px; }
 button {
-  background: #111; color: white; border: 0;
-  font-weight: bold; cursor: pointer;
+  border:0; border-radius:7px; padding:11px 16px;
+  font-weight:bold; cursor:pointer;
 }
-#message { display: none; color: #147a36; font-weight: bold; }
+.red { background:var(--red); color:white; }
+main { max-width:1100px; margin:auto; padding:25px 18px 60px; }
+.hero {
+  padding:38px 25px; border-radius:15px;
+  background:radial-gradient(ellipse at top right,#63202e,transparent 65%),
+             linear-gradient(135deg,#25171d,#151114);
+  border:1px solid #48232d;
+}
+.pill {
+  display:inline-block; color:#ff9ba8; background:#4a1723;
+  padding:7px 10px; border-radius:30px; font-size:11px;
+}
+h1 { font-size:clamp(32px,7vw,55px); margin:18px 0 10px; }
+h1 span { color:var(--red); }
+p { color:var(--muted); line-height:1.6; }
+.section-title {
+  display:flex; justify-content:space-between; align-items:center;
+  margin:30px 0 15px;
+}
+.section-title h2 { font-size:20px; margin:0; }
+.categories { display:flex; gap:9px; flex-wrap:wrap; }
+.chip {
+  background:#211a1e; color:#eee; border:1px solid #3b2b31;
+  border-radius:30px; padding:9px 14px;
+}
+.chip.active { background:var(--red); border-color:var(--red); }
+.grid {
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:15px;
+}
+.video {
+  background:var(--panel); border:1px solid #302329;
+  border-radius:12px; overflow:hidden;
+}
+.thumb {
+  aspect-ratio:16/10; display:grid; place-items:center;
+  background:linear-gradient(135deg,#391a25,#151115);
+  font-size:38px; position:relative;
+}
+.thumb::after {
+  content:"DÉMO"; position:absolute; bottom:9px; left:9px;
+  font-size:10px; letter-spacing:2px; color:#ffadb8;
+}
+.play {
+  border-radius:50%; width:48px; height:48px;
+  background:#e52b43e8; color:white; font-size:20px;
+}
+.details { padding:13px; }
+.details h3 { font-size:15px; margin:0 0 7px; }
+.details p { font-size:12px; margin:0; }
+.notice {
+  margin-top:25px; padding:15px; border:1px solid #392b30;
+  border-radius:10px; font-size:12px; color:var(--muted);
+}
+footer { padding:25px; text-align:center; color:#81777b; font-size:12px; }
+#age-screen {
+  position:fixed; inset:0; z-index:10; background:#100d0f;
+  display:flex; align-items:center; justify-content:center; padding:20px;
+}
+.age-box {
+  max-width:390px; width:100%; padding:28px; text-align:center;
+  background:#1b1619; border:1px solid #47232d; border-radius:16px;
+}
+.age-logo { font-size:36px; font-weight:900; letter-spacing:5px; }
+.age-logo span { color:var(--red); }
+.age-box h2 { font-size:23px; }
+.age-box button { width:100%; margin-top:10px; }
+#denied { display:none; color:#ff9ba8; }
+@media(max-width:650px) {
+  .grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+  header { padding:15px; }
+  .tag { display:none; }
+  .hero { padding:28px 18px; }
+}
+@media(max-width:380px) {
+  .grid { grid-template-columns:1fr; }
+}
 </style>
 </head>
 <body>
-<main class="card">
-  <div class="ghost">👻</div>
-  <h1>Bienvenue !</h1>
-  <p>Gagne Snap plus gratuitement !</p>
-  <form id="demo">
-    <input type="text" placeholder="Nom d'utilisateur"
-      autocomplete="off" aria-label="Mot de passe" required>
-    <input type="password" placeholder="Mot de passe "
-      autocomplete="off" aria-label="Mot de passe m" required>
-    <button type="submit">Connection</button>
-  </form>m
-  <p id="message">✅ C'est momo djebbouri qui ta piraté neuil 😂😂</p>
+
+<div id="age-screen">
+  <div class="age-box">
+    <div class="age-logo">N<span>O</span>IR</div>
+    <p class="pill">SITE DE DÉMONSTRATION</p>
+    <h2>Tu as 18 ans ou plus ?</h2>
+    <p>Cette maquette est réservée aux adultes. Elle ne contient que des cartes fictives non explicites.</p>
+    <button class="red" id="yes">Oui, j'ai 18 ans ou plus</button>
+    <button id="no" style="background:#30272c;color:white">Non, quitter</button>
+    <p id="denied">Accès refusé.</p>
+  </div>
+</div>
+
+<header>
+  <div class="logo">N<span>O</span>IR</div>
+  <div class="tag">MAQUETTE • 18+</div>
+  <button class="red" onclick="document.getElementById('catalogue').scrollIntoView({behavior:'smooth'})">Explorer</button>
+</header>
+
+<main>
+  <section class="hero">
+    <span class="pill">✦ ÉDITION PREMIUM</span>
+    <h1>Le cinéma,<br><span>version nocturne.</span></h1>
+    <p>Une interface de démonstration élégante avec des aperçus fictifs.</p>
+    <button class="red" onclick="document.getElementById('catalogue').scrollIntoView({behavior:'smooth'})">Découvrir les démos →</button>
+  </section>
+
+  <section id="catalogue">
+    <div class="section-title">
+      <h2>À découvrir</h2>
+      <span class="tag">3 DÉMOS</span>
+    </div>
+    <div class="categories">
+      <button class="chip active" data-filter="all">Tout</button>
+      <button class="chip" data-filter="cinema">Cinéma</button>
+      <button class="chip" data-filter="ambiance">Ambiance</button>
+      <button class="chip" data-filter="art">Art visuel</button>
+    </div>
+
+    <div class="grid" style="margin-top:16px">
+      <article class="video" data-category="cinema">
+        <div class="thumb"><button class="play" aria-label="Voir la démo">▶</button></div>
+        <div class="details"><h3>Minuit en ville</h3><p>Démo fictive · 02:14</p></div>
+      </article>
+      <article class="video" data-category="ambiance">
+        <div class="thumb" style="background:linear-gradient(135deg,#49202c,#17151c)"><button class="play" aria-label="Voir la démo">▶</button></div>
+        <div class="details"><h3>Lumières rouges</h3><p>Démo fictive · 01:32</p></div>
+      </article>
+      <article class="video" data-category="art">
+        <div class="thumb" style="background:linear-gradient(135deg,#30203c,#14131b)"><button class="play" aria-label="Voir la démo">▶</button></div>
+        <div class="details"><h3>Ombres & néons</h3><p>Démo fictive · 03:05</p></div>
+      </article>
+    </div>
+  </section>
+
+  <div class="notice">
+    <strong>À propos de cette maquette</strong><br>
+    Les vidéos sont fictives et ne sont pas lisibles. Le contrôle d'âge est uniquement visuel : il ne vérifie pas réellement l'âge.
+    Aucune donnée n'est demandée ni envoyée.
+  </div>
 </main>
+
+<footer>NOIR — Projet HTML éducatif · 2026</footer>
+
 <script>
-document.getElementById("demo").addEventListener("submit", function(e) {
-  e.preventDefault();
-  this.reset();
-  document.getElementById("message").style.display = "block";
+const screen = document.getElementById('age-screen');
+document.getElementById('yes').addEventListener('click', () => {
+  screen.style.display = 'none';
+});
+document.getElementById('no').addEventListener('click', () => {
+  document.getElementById('denied').style.display = 'block';
+});
+document.querySelectorAll('[data-filter]').forEach(button => {
+  button.addEventListener('click', () => {
+    document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
+    button.classList.add('active');
+    document.querySelectorAll('.video').forEach(card => {
+      card.style.display = button.dataset.filter === 'all' ||
+        card.dataset.category === button.dataset.filter ? '' : 'none';
+    });
+  });
+});
+document.querySelectorAll('.play').forEach(button => {
+  button.addEventListener('click', () => {
+    alert('Démo fictive : aucune vidéo réelle n’est disponible.');
+  });
 });
 </script>
 </body>
