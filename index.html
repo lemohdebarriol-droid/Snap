@@ -2,12 +2,56 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ma page de test</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Snap - Démonstration</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0; font-family: Arial, sans-serif;
+  background: #fffc00; color: #111;
+  min-height: 100vh; display: grid; place-items: center;
+}
+.card {
+  background: white; padding: 30px 24px;
+  border-radius: 22px; width: 90%; max-width: 360px;
+  text-align: center; box-shadow: 0 8px 25px #0002;
+}
+.ghost { font-size: 58px; }
+h1 { font-size: 25px; margin: 10px 0; }
+p { color: #555; font-size: 14px; line-height: 1.5; }
+input, button {
+  width: 100%; padding: 14px; margin-top: 14px;
+  border-radius: 10px; font-size: 16px;
+}
+input { border: 1px solid #ddd; }
+button {
+  background: #111; color: white; border: 0;
+  font-weight: bold; cursor: pointer;
+}
+#message { display: none; color: #147a36; font-weight: bold; }
+</style>
 </head>
 <body>
+<main class="card">
+  <div class="ghost">👻</div>
   <h1>Bienvenue !</h1>
-  <p>Ceci est ma page de démonstration.</p>
+  <p>Démo éducative — aucune connexion réelle à Snapchat.</p>
+  <form id="demo">
+    <input type="text" placeholder="Nom de démonstration"
+      autocomplete="off" aria-label="Nom fictif" required>
+    <input type="password" placeholder="Mot de passe fictif"
+      autocomplete="off" aria-label="Mot de passe fictif" required>
+    <button type="submit">Tester la démo</button>
+  </form>
+  <p id="message">✅ Démonstration réussie ! Aucun identifiant enregistré ou envoyé.</p>
+</main>
+<script>
+document.getElementById("demo").addEventListener("submit", function(e) {
+  e.preventDefault();
+  this.reset();
+  document.getElementById("message").style.display = "block";
+});
+</script>
 </body>
 </html>
